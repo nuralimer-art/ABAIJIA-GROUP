@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ABAIJIA GROUP — Алюминиевые окна и двери</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --black:#0a0a0a;
+  --black2:#141414;
+  --black3:#1e1e1e;
+  --gold:#c8882a;
+  --gold2:#e6a830;
+  --bg:#f5f2ed;
+  --white:#ffffff;
+  --text:#1a1a1a;
+  --muted:#6a6a6a;
+  --border:#ddd5c5;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Montserrat',sans-serif;color:var(--text);background:var(--white);overflow-x:hidden}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:9000;
+  height:74px;padding:0 48px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(10,10,10,0.96);
+  border-bottom:1px solid rgba(200,136,42,0.25);
+  backdrop-filter:blur(12px);
+}
+.logo{display:flex;align-items:center;gap:14px;text-decoration:none}
+.logo img{height:46px;width:auto;display:block;object-fit:contain}
+.logo-fallback{display:none;flex-direction:column;line-height:1}
+.logo-name{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--gold);letter-spacing:2px}
+.logo-sub{font-size:9px;letter-spacing:4px;color:rgba(255,255,255,0.4);text-transform:uppercase}
+.nav-menu{list-style:none;display:flex;gap:28px;align-items:center}
+.nav-menu a{text-decoration:none;font-size:10.5px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.7);transition:color .2s}
+.nav-menu a:hover{color:var(--gold)}
+.nav-btn{background:var(--gold)!important;color:#000!important;padding:9px 22px;font-weight:700!important}
+.nav-btn:hover{background:var(--gold2)!important}
+.burger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.burger span{display:block;width:22px;height:2px;background:var(--gold)}
+
+/* HERO */
+.hero{min-height:100vh;padding-top:74px;display:flex;align-items:center;background:var(--black);position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:url('photos/hero.jpg') center/cover no-repeat;opacity: 45}
+.hero-grad{position:absolute;inset:0;background:linear-gradient(120deg,rgba(10,10,10,.75) 45%,rgba(10,10,10,.35) 100%)}
+.hero-body{position:relative;z-index:2;padding:0 64px;max-width:720px}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:12px;font-size:10px;letter-spacing:3.5px;text-transform:uppercase;color:var(--gold);margin-bottom:26px}
+.hero-eyebrow::before{content:'';width:32px;height:1px;background:var(--gold)}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(40px,6.5vw,78px);font-weight:700;color:#fff;line-height:1.05;text-transform:uppercase;letter-spacing:1px;margin-bottom:22px}
+.hero h1 span{color:var(--gold)}
+.hero p{font-size:15px;color:rgba(255,255,255,.65);line-height:1.9;max-width:480px;margin-bottom:40px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn-gold{display:inline-block;background:var(--gold);color:#000;padding:16px 44px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border:2px solid transparent;cursor:pointer;transition:all .25s}
+.btn-gold:hover{background:var(--gold2);transform:translateY(-2px)}
+.btn-outline{display:inline-block;background:transparent;color:rgba(255,255,255,.85);padding:14px 44px;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border:1px solid rgba(255,255,255,.3);cursor:pointer;transition:all .25s}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+
+/* TICKER */
+.ticker{background:var(--gold);padding:13px 0;overflow:hidden;white-space:nowrap}
+.ticker-track{display:inline-flex;animation:tick 38s linear infinite}
+.ticker-track span{font-size:10.5px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#000;padding:0 36px}
+.ticker-track span::before{content:'◆';margin-right:36px;font-size:7px}
+@keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* SECTION HELPERS */
+.sec{padding:104px 64px}
+.sec-center{text-align:center}
+.tag{display:inline-flex;align-items:center;gap:10px;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;font-weight:700}
+.tag::before{content:'';width:22px;height:1px;background:var(--gold)}
+.sec-center .tag{justify-content:center}
+.sec-center .tag::before{display:none}
+.h2{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,52px);font-weight:700;color:var(--text);line-height:1.12;margin-bottom:16px}
+.lead{font-size:15px;color:var(--muted);line-height:1.85;max-width:560px}
+.sec-center .lead{margin:0 auto}
+
+/* WHY */
+.sec-why{background:var(--black)}
+.sec-why .h2{color:#fff}
+.sec-why .lead{color:rgba(255,255,255,.45)}
+.why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2px;max-width:1200px;margin:56px auto 0}
+.why-card{background:var(--black2);padding:44px 34px;border-bottom:3px solid transparent;transition:border-color .3s,background .3s}
+.why-card:hover{border-color:var(--gold);background:var(--black3)}
+.why-num{font-size:10px;letter-spacing:3px;color:var(--gold);font-weight:700;margin-bottom:22px}
+.why-card h3{font-size:13.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#fff;margin-bottom:13px}
+.why-card p{font-size:13.5px;color:rgba(255,255,255,.4);line-height:1.85}
+
+/* PRODUCTS */
+.sec-prod{background:var(--bg)}
+.prod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1200px;margin:52px auto 0}
+.prod-card{position:relative;overflow:hidden;background:#111;aspect-ratio:3/4;cursor:pointer}
+.prod-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.65;transition:transform .55s,opacity .55s;display:block;z-index:1}
+.prod-card:hover img{transform:scale(1.07);opacity:.45}
+.prod-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:rgba(255,255,255,.12);font-size:11px;letter-spacing:2px;text-transform:uppercase;z-index:0}
+.prod-placeholder .pi{font-size:40px;opacity:.25}
+.prod-tag{position:absolute;top:20px;left:20px;font-size:9px;letter-spacing:2px;color:var(--gold);font-weight:700;text-transform:uppercase;z-index:2}
+.prod-info{position:absolute;bottom:0;left:0;right:0;padding:60px 28px 28px;background:linear-gradient(to top,rgba(0,0,0,.92),transparent);z-index:2}
+.prod-info h3{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#fff;margin-bottom:6px}
+.prod-info p{font-size:12px;color:rgba(255,255,255,.55)}
+
+/* STATS */
+.sec-stats{background:var(--gold);padding:72px 64px}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;max-width:1100px;margin:0 auto;text-align:center}
+.stat-n{font-family:'Playfair Display',serif;font-size:clamp(48px,6vw,74px);font-weight:700;color:#000;line-height:1;margin-bottom:10px}
+.stat-l{font-size:10.5px;letter-spacing:2px;text-transform:uppercase;color:rgba(0,0,0,.55);line-height:1.6;font-weight:700}
+
+/* ABOUT */
+.sec-about{background:var(--white)}
+.about-txt blockquote{font-size:16.5px;font-style:italic;color:var(--black);border-left:3px solid var(--gold);padding-left:22px;margin:26px 0;line-height:1.8}
+.about-txt p{font-size:14.5px;color:var(--muted);line-height:1.9;margin-bottom:14px}
+
+/* CATALOG */
+.sec-cat{background:var(--bg)}
+.cat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:26px;max-width:1200px;margin:56px auto 0}
+.cat-card{background:#fff;overflow:hidden;transition:transform .3s,box-shadow .3s}
+.cat-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,.1)}
+.cat-img{height:230px;overflow:hidden;position:relative;background:var(--black2)}
+.cat-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s;z-index:1}
+.cat-card:hover .cat-img img{transform:scale(1.05)}
+.cat-img-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:rgba(255,255,255,.15);font-size:10px;letter-spacing:2px;text-transform:uppercase;text-align:center;padding:16px;z-index:0}
+.cat-img-ph .pi{font-size:30px}
+.cat-body{padding:26px}
+.cat-body h3{font-size:12.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text);margin-bottom:9px}
+.cat-body p{font-size:13px;color:var(--muted);line-height:1.75;margin-bottom:14px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;list-style:none}
+.tags li{font-size:9.5px;letter-spacing:1px;text-transform:uppercase;color:var(--gold);border:1px solid var(--border);padding:4px 10px;font-weight:700}
+
+/* ORDER */
+.sec-order{background:var(--black)}
+.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;max-width:1200px;margin:56px auto 0}
+.step-card{border:1px solid rgba(200,136,42,.18);padding:36px 22px;text-align:center;transition:border-color .25s,background .25s}
+.step-card:hover{border-color:var(--gold);background:rgba(200,136,42,.05)}
+.step-icon{width:64px;height:64px;margin:0 auto 20px;border:1.5px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px}
+.step-card h3{font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#fff;margin-bottom:10px}
+.step-card p{font-size:12px;color:rgba(255,255,255,.38);line-height:1.75}
+
+/* CONTACT */
+.sec-contact{background:var(--white)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;max-width:1100px;margin:56px auto 0}
+.contact-info h3{font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text);margin-bottom:28px}
+.c-row{display:flex;align-items:flex-start;gap:16px;margin-bottom:22px}
+.c-icon{width:44px;height:44px;background:var(--gold);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:20px}
+.c-row p{font-size:12.5px;color:var(--muted);line-height:1.7}
+.c-row a{display:block;color:var(--text);text-decoration:none;font-weight:700;font-size:15px;margin-bottom:2px;transition:color .2s}
+.c-row a:hover{color:var(--gold)}
+.wa-big{display:inline-flex;align-items:center;gap:12px;margin-top:24px;background:#25D366;color:#fff;text-decoration:none;padding:16px 32px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;transition:all .2s}
+.wa-big:hover{background:#1db954;transform:translateY(-2px)}
+.form-grp{margin-bottom:16px}
+.form-grp label{display:block;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text);margin-bottom:7px}
+.form-grp input,.form-grp textarea,.form-grp select{width:100%;padding:14px 16px;border:1.5px solid var(--border);font-family:'Montserrat',sans-serif;font-size:14px;color:var(--text);background:#fff;outline:none;transition:border-color .2s;appearance:none}
+.form-grp input:focus,.form-grp textarea:focus,.form-grp select:focus{border-color:var(--gold)}
+.form-grp textarea{resize:vertical;min-height:110px}
+.form-btn{width:100%;background:var(--gold);color:#000;border:none;cursor:pointer;padding:18px;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;transition:all .2s}
+.form-btn:hover{background:var(--gold2);transform:translateY(-1px)}
+.form-ok{display:none;background:#f0fff4;border:1px solid #25D366;padding:16px;text-align:center;font-size:14px;color:#1a6b2a;margin-top:14px}
+
+/* FOOTER */
+footer{background:#080808;padding:60px 64px 36px;color:rgba(255,255,255,.5)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:60px;margin-bottom:48px}
+.f-logo{display:flex;align-items:center;gap:14px;margin-bottom:16px}
+.f-logo img{height:48px;width:auto;object-fit:contain}
+.f-logo-text{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--gold);letter-spacing:2px;line-height:1.1}
+.f-logo-sub{font-size:9px;letter-spacing:4px;color:rgba(255,255,255,.3)}
+.footer-brand p{font-size:13px;line-height:1.85;max-width:300px}
+.f-col h4{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:20px}
+.f-col ul{list-style:none}
+.f-col ul li{margin-bottom:11px;font-size:13px}
+.f-col ul li a{color:rgba(255,255,255,.5);text-decoration:none;transition:color .2s}
+.f-col ul li a:hover{color:var(--gold)}
+.f-social{display:inline-flex;align-items:center;gap:8px;margin-top:20px;color:var(--gold);text-decoration:none;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border:1px solid var(--gold);padding:9px 20px;transition:all .2s}
+.f-social:hover{background:var(--gold);color:#000}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.07);padding-top:26px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12px}
+
+/* FLOATING WA */
+.wa-float{position:fixed;bottom:28px;right:28px;z-index:8888;width:60px;height:60px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 6px 24px rgba(37,211,102,.5);animation:wapulse 2.5s ease-in-out infinite;transition:transform .2s}
+.wa-float:hover{transform:scale(1.12);animation:none}
+.wa-float svg{width:30px;height:30px;fill:#fff}
+@keyframes wapulse{0%,100%{box-shadow:0 6px 24px rgba(37,211,102,.45)}50%{box-shadow:0 6px 40px rgba(37,211,102,.75)}}
+
+/* MOBILE */
+@media(max-width:920px){
+  nav{padding:0 20px}
+  .nav-menu{display:none}
+  .nav-menu.open{display:flex;flex-direction:column;gap:20px;position:fixed;top:74px;left:0;right:0;background:rgba(10,10,10,.98);padding:28px 24px;border-top:1px solid rgba(200,136,42,.2)}
+  .burger{display:flex}
+  .sec{padding:68px 24px}
+  .sec-stats{padding:56px 24px}
+  .hero-body{padding:0 24px}
+  .prod-grid{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:repeat(2,1fr);gap:24px}
+  .footer-grid{grid-template-columns:1fr;gap:36px}
+  footer{padding:50px 24px 32px}
+  .wa-float{bottom:20px;right:20px}
+  .contact-grid{grid-template-columns:1fr;gap:44px}
+}
+@media(max-width:600px){
+  .hero h1{font-size:36px}
+  .steps-grid{grid-template-columns:repeat(2,1fr)}
+  .btn-outline{display:block;text-align:center;margin-top:10px}
+}
+</style>
+</head>
+<body>
+
+<!-- ПЛАВАЮЩАЯ КНОПКА WHATSAPP -->
+<a href="https://wa.me/996888520000" target="_blank" class="wa-float" title="Написать в WhatsApp">
+  <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+    <path d="M16 0C7.164 0 0 7.163 0 16c0 2.833.742 5.484 2.032 7.784L0 32l8.454-2.007A15.93 15.93 0 0 0 16 32c8.837 0 16-7.164 16-16S24.837 0 16 0zm0 29.25a13.19 13.19 0 0 1-6.727-1.838l-.483-.285-4.996 1.188 1.218-4.853-.316-.497A13.17 13.17 0 0 1 2.75 16C2.75 8.682 8.682 2.75 16 2.75S29.25 8.682 29.25 16 23.318 29.25 16 29.25zm7.24-9.86c-.396-.198-2.346-1.158-2.709-1.29-.364-.132-.628-.198-.893.198-.264.396-1.025 1.29-1.256 1.555-.231.264-.462.297-.858.099-.396-.198-1.673-.617-3.185-1.966-1.177-1.051-1.971-2.348-2.202-2.744-.231-.397-.025-.611.174-.809.178-.177.396-.462.594-.693.198-.231.264-.397.396-.661.132-.264.066-.496-.033-.694-.099-.198-.893-2.152-1.223-2.947-.323-.773-.65-.668-.893-.68-.231-.012-.496-.015-.76-.015a1.46 1.46 0 0 0-1.058.495c-.363.396-1.388 1.357-1.388 3.31 0 1.954 1.421 3.843 1.619 4.107.198.264 2.795 4.269 6.773 5.984.946.408 1.684.651 2.259.834.949.302 1.813.259 2.496.157.762-.113 2.346-.959 2.676-1.884.33-.926.33-1.72.231-1.885-.099-.165-.363-.264-.76-.462z"/>
+  </svg>
+</a>
+
+<!-- НАВИГАЦИЯ -->
+<nav>
+  <a href="#hero" class="logo">
+    <img src="photos/logo.jpg" alt="ABAIJIA GROUP"
+         onerror="this.style.display='none';document.querySelector('.logo-fallback').style.display='flex'">
+    <div class="logo-fallback">
+      <span class="logo-name">ABAIJIA</span>
+      <span class="logo-sub">GROUP</span>
+    </div>
+  </a>
+  <ul class="nav-menu" id="navMenu">
+    <li><a href="#hero">Главная</a></li>
+    <li><a href="#why">Преимущества</a></li>
+    <li><a href="#products">Продукция</a></li>
+    <li><a href="#about">О компании</a></li>
+    <li><a href="#catalog">Каталог</a></li>
+    <li><a href="#order">Заказ</a></li>
+    <li><a href="#contact" class="nav-btn">Оставить заявку</a></li>
+  </ul>
+  <button class="burger" aria-label="Меню" onclick="document.getElementById('navMenu').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ГЕРОЙ -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grad"></div>
+  <div class="hero-body">
+    <div class="hero-eyebrow">Бишкек · Кыргызстан</div>
+    <h1>Алюминиевые<br><span>окна</span> и двери</h1>
+    <p>Изготавливаем окна, двери, витражи и фасады любой формы и цвета. Собственный завод в Бишкеке — без посредников, без переплат.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-gold">Получить расчёт бесплатно</a>
+      <a href="#catalog" class="btn-outline">Смотреть каталог</a>
+    </div>
+  </div>
+</section>
+
+<!-- БЕГУЩАЯ СТРОКА -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span>Более 100 реализованных объектов</span>
+    <span>2 завода — Бишкек и Китай</span>
+    <span>Более 150 цветов RAL</span>
+    <span>Работаем по всему Кыргызстану</span>
+    <span>Гарантия 10 лет на профиль</span>
+    <span>Монтаж под ключ</span>
+    <span>Более 100 реализованных объектов</span>
+    <span>2 завода — Бишкек и Китай</span>
+    <span>Более 150 цветов RAL</span>
+    <span>Работаем по всему Кыргызстану</span>
+    <span>Гарантия 10 лет на профиль</span>
+    <span>Монтаж под ключ</span>
+  </div>
+</div>
+
+<!-- ПОЧЕМУ МЫ -->
+<section class="sec sec-why" id="why">
+  <div class="sec-center">
+    <div class="tag">Наши преимущества</div>
+    <h2 class="h2" style="color:#fff">Почему выбирают ABAIJIA GROUP?</h2>
+    <p class="lead" style="color:rgba(255,255,255,.4)">Мы не посредники. Мы производитель с собственными заводами и полным производственным циклом.</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-num">01</div>
+      <h3>Собственный завод</h3>
+      <p>Производим сами — цены без наценки. Заводы в Китае и Бишкеке. Используем профиль высшего сорта по ценам, недоступным для дилеров.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-num">02</div>
+      <h3>Любая форма и цвет</h3>
+      <p>Более 150 цветов RAL, любые формы — от стандартных окон до сложных фасадных систем. Производим любой объём.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-num">03</div>
+      <h3>Гарантия 10 лет</h3>
+      <p>На профиль и фурнитуру — 10 лет, на монтаж — 3 года. Сервисное обслуживание полтора года. Всё документально.</p>
+    </div>
+    <div class="why-card">
+      <div class="why-num">04</div>
+      <h3>100+ проектов</h3>
+      <p>100+ реализованных объектов на рынке Китая и первые объекты в Бишкеке уже в работе. Портфолио по запросу.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ПРОДУКЦИЯ -->
+<section class="sec sec-prod" id="products">
+  <div>
+    <div class="tag">Что мы производим</div>
+    <h2 class="h2">Продукция</h2>
+  </div>
+  <div class="prod-grid">
+    <div class="prod-card">
+      <img src="photos/okna.jpg" alt="Окна">
+      <div class="prod-placeholder"><div class="pi">🪟</div><span>photos/okna.jpg</span></div>
+      <div class="prod-tag">01</div>
+      <div class="prod-info"><h3>Окна</h3><p>Теплоизоляция и долговечность</p></div>
+    </div>
+    <div class="prod-card">
+      <img src="photos/dveri.jpg" alt="Двери">
+      <div class="prod-placeholder"><div class="pi">🚪</div><span>photos/dveri.jpg</span></div>
+      <div class="prod-tag">02</div>
+      <div class="prod-info"><h3>Двери</h3><p>Современные алюминиевые решения</p></div>
+    </div>
+    <div class="prod-card">
+      <img src="photos/fasad.jpg" alt="Фасады">
+      <div class="prod-placeholder"><div class="pi">🏢</div><span>photos/fasad.jpg</span></div>
+      <div class="prod-tag">03</div>
+      <div class="prod-info"><h3>Фасады</h3><p>Оформление объектов любой сложности</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- СТАТИСТИКА -->
+<div class="sec-stats">
+  <div class="stats-grid">
+    <div><div class="stat-n">100+</div><div class="stat-l">Реализованных<br>проектов</div></div>
+    <div><div class="stat-n">2</div><div class="stat-l">Собственных<br>завода</div></div>
+    <div><div class="stat-n">150+</div><div class="stat-l">Цветов<br>RAL</div></div>
+    <div><div class="stat-n">10</div><div class="stat-l">Лет<br>гарантии</div></div>
+  </div>
+</div>
+
+<!-- О КОМПАНИИ -->
+<section class="sec sec-about" id="about">
+  <div class="sec-center" style="margin-bottom:52px">
+    <div class="tag">Наша история</div>
+    <h2 class="h2">О компании</h2>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;max-width:1200px;margin:0 auto">
+    <div class="about-txt">
+      <blockquote>«Выживание за счёт качества, развитие за счёт репутации.»</blockquote>
+      <p>Когда алюминиевая отрасль только набирала силу, мы уже были частью этого пути. Мы видели, как индустрия меняет города и архитектуру, как качество становится не просто стандартом, а философией.</p>
+      <p>Мы строим не просто окна и двери — мы строим доверие. Каждый реализованный объект — это подтверждение того, что мы движемся в правильном направлении.</p>
+      <a href="#contact" class="btn-gold" style="margin-top:28px;display:inline-block">Связаться с нами</a>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <img src="photos/about.jpg" alt="Завод" style="width:100%;height:260px;object-fit:cover;display:block">
+      <img src="photos/page-2_2.jpg" alt="Производство" style="width:100%;height:260px;object-fit:cover;display:block">
+    </div>
+  </div>
+</section>
+
+<!-- КАТАЛОГ -->
+<section class="sec sec-cat" id="catalog">
+  <div class="sec-center">
+    <div class="tag">Ассортимент</div>
+    <h2 class="h2">Краткий каталог</h2>
+  </div>
+  <div class="cat-grid">
+
+    <div class="cat-card">
+      <div class="cat-img">
+        <img src="photos/cat1.jpg" alt="Распашные окна">
+        <div class="cat-img-ph"><div class="pi">🪟</div><span>photos/cat1.jpg</span></div>
+      </div>
+      <div class="cat-body">
+        <h3>Серия распашных окон</h3>
+        <p>50–80 экологичный алюминиевый профиль с терморазрывом</p>
+        <ul class="tags"><li>Шумоизоляция</li><li>Теплоизоляция</li><li>Водонепроницаемость</li><li>Герметичность</li><li>Ветроустойчивость</li></ul>
+      </div>
+    </div>
+
+    <div class="cat-card">
+      <div class="cat-img">
+        <img src="photos/cat2.jpg" alt="Системные окна">
+        <div class="cat-img-ph"><div class="pi">🪟</div><span>photos/cat2.jpg</span></div>
+      </div>
+      <div class="cat-body">
+        <h3>Системные окна</h3>
+        <p>70–135, окно с москитной сеткой (интегрированная конструкция)</p>
+        <ul class="tags"><li>Звукоизоляция</li><li>Теплоизоляция</li><li>Водонепроницаемость</li><li>Герметичность</li></ul>
+      </div>
+    </div>
+
+    <div class="cat-card">
+      <div class="cat-img">
+        <img src="photos/cat3.jpg" alt="Распашные двери">
+        <div class="cat-img-ph"><div class="pi">🚪</div><span>photos/cat3.jpg</span></div>
+      </div>
+      <div class="cat-body">
+        <h3>Серия распашных дверей</h3>
+        <p>Экологичные утеплённые двери с терморазрывом</p>
+        <ul class="tags"><li>Теплоизоляция</li><li>Звукоизоляция</li><li>Ветроустойчивость</li><li>Герметичность</li></ul>
+      </div>
+    </div>
+
+    <div class="cat-card">
+      <div class="cat-img">
+        <img src="photos/cat4.jpg" alt="Раздвижные двери">
+        <div class="cat-img-ph"><div class="pi">🚪</div><span>photos/cat4.jpg</span></div>
+      </div>
+      <div class="cat-body">
+        <h3>Распашные и раздвижные двери</h3>
+        <p>Обычные алюминиевые двери — надёжно и стильно</p>
+        <ul class="tags"><li>Теплоизоляция</li><li>Звукоизоляция</li><li>Герметичность</li><li>Водонепроницаемость</li></ul>
+      </div>
+    </div>
+
+    <div class="cat-card">
+      <div class="cat-img">
+        <img src="photos/cat5.jpg" alt="Фасадные окна">
+        <div class="cat-img-ph"><div class="pi">🏢</div><span>photos/cat5.jpg</span></div>
+      </div>
+      <div class="cat-body">
+        <h3>Фасадные окна</h3>
+        <p>Максимум света и минимум затенения. Закалённое стекло — высокая безопасность</p>
+        <ul class="tags"><li>Закалённое стекло</li><li>Безопасность</li><li>Долговечность</li></ul>
+      </div>
+    </div>
+
+    <div class="cat-card">
+      <div class="cat-img">
+        <img src="photos/cat6.jpg" alt="Зимний сад">
+        <div class="cat-img-ph"><div class="pi">🌿</div><span>photos/cat6.jpg</span></div>
+      </div>
+      <div class="cat-body">
+        <h3>Солнечная комната / Зимний сад</h3>
+        <p>Балконы, террасы, пристройки. Профиль 2.8–3.2 мм. Разные типы крыши.</p>
+        <ul class="tags"><li>Разные типы крыш</li><li>Стекло / утеплитель</li><li>Любая форма</li></ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- КАК ОФОРМИТЬ ЗАКАЗ -->
+<section class="sec sec-order" id="order">
+  <div class="sec-center">
+    <div class="tag">Просто и удобно</div>
+    <h2 class="h2" style="color:#fff">Как оформить заказ?</h2>
+  </div>
+  <div class="steps-grid">
+    <div class="step-card"><div class="step-icon">💬</div><h3>Заявка</h3><p>Позвоните, напишите в WhatsApp или оставьте форму на сайте</p></div>
+    <div class="step-card"><div class="step-icon">📋</div><h3>Предложение</h3><p>Получите персональное предложение с учётом всех пожеланий</p></div>
+    <div class="step-card"><div class="step-icon">📐</div><h3>Замер</h3><p>Специалист выедет для точных замеров объекта</p></div>
+    <div class="step-card"><div class="step-icon">📝</div><h3>Договор</h3><p>Подписываем договор со всеми условиями и гарантиями</p></div>
+    <div class="step-card"><div class="step-icon">🏭</div><h3>Производство</h3><p>Изготовление по вашим индивидуальным параметрам</p></div>
+    <div class="step-card"><div class="step-icon">🚚</div><h3>Доставка</h3><p>Бережная доставка и аккуратная разгрузка на объекте</p></div>
+    <div class="step-card"><div class="step-icon">🔧</div><h3>Монтаж</h3><p>Профессиональная установка по всем технологиям</p></div>
+  </div>
+</section>
+
+<!-- ФОРМА ЗАЯВКИ -->
+<section class="sec sec-contact" id="contact">
+  <div class="sec-center">
+    <div class="tag">Свяжитесь с нами</div> 
+    <h2 class="h2">Оставьте заявку</h2>
+    <p class="lead">Перезвоним в течение 30 минут и ответим на все вопросы</p>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <h3>Контактная информация</h3>
+      <div class="c-row">
+        <div class="c-icon">📍</div>
+        <div><a href="#">Bishkek, Kyrgyzstan</a><p>Работаем по всему Кыргызстану</p></div>
+      </div>
+      <div class="c-row">
+        <div class="c-icon">📞</div>
+        <div><a href="tel:+996888520000">+996 888 52 00 00</a><p>Звонки и WhatsApp — пн–сб 9:00–18:00</p></div>
+      </div>
+      <div class="c-row">
+        <div class="c-icon">✉️</div>
+        <div><a href="mailto:kgabaijiagroup@gmail.com">kgabaijiagroup@gmail.com</a><p>Ответим в течение часа</p></div>
+      </div>
+      <a href="https://wa.me/996888520000" target="_blank" class="wa-big">
+        <svg width="20" height="20" viewBox="0 0 32 32" fill="currentColor"><path d="M16 0C7.164 0 0 7.163 0 16c0 2.833.742 5.484 2.032 7.784L0 32l8.454-2.007A15.93 15.93 0 0 0 16 32c8.837 0 16-7.164 16-16S24.837 0 16 0zm7.24 19.39c-.396-.198-2.346-1.158-2.709-1.29-.364-.132-.628-.198-.893.198-.264.396-1.025 1.29-1.256 1.555-.231.264-.462.297-.858.099-.396-.198-1.673-.617-3.185-1.966-1.177-1.051-1.971-2.348-2.202-2.744-.231-.397-.025-.611.174-.809.178-.177.396-.462.594-.693.198-.231.264-.397.396-.661.132-.264.066-.496-.033-.694-.099-.198-.893-2.152-1.223-2.947-.323-.773-.65-.668-.893-.68-.231-.012-.496-.015-.76-.015a1.46 1.46 0 0 0-1.058.495c-.363.396-1.388 1.357-1.388 3.31 0 1.954 1.421 3.843 1.619 4.107.198.264 2.795 4.269 6.773 5.984.946.408 1.684.651 2.259.834.949.302 1.813.259 2.496.157.762-.113 2.346-.959 2.676-1.884.33-.926.33-1.72.231-1.885-.099-.165-.363-.264-.76-.462z"/></svg>
+        Написать в WhatsApp
+      </a>
+    </div>
+    <div>
+      <div class="form-grp"><label>Ваше имя *</label><input type="text" id="f-name" placeholder="Например: Айгуль"></div>
+      <div class="form-grp"><label>Номер телефона *</label><input type="tel" id="f-phone" placeholder="+996 ___ __ __ __"></div>
+      <div class="form-grp">
+        <label>Что вас интересует?</label>
+        <select id="f-type">
+          <option value="">Выберите тип продукции...</option>
+          <option>Окна</option><option>Двери</option><option>Фасадные системы</option>
+          <option>Зимний сад / Солнечная комната</option><option>Несколько позиций</option><option>Консультация</option>
+        </select>
+      </div>
+      <div class="form-grp"><label>Комментарий</label><textarea id="f-msg" placeholder="Опишите проект, размеры, пожелания по цвету..."></textarea></div>
+      <button class="form-btn" onclick="sendForm()">Отправить заявку →</button>
+      <div class="form-ok" id="formOk">✅ Спасибо! Ваша заявка принята. Перезвоним в ближайшее время.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ФУТЕР -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="f-logo">
+        <img src="photos/logo.jpg" alt="ABAIJIA GROUP" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+        <div style="display:none"><div class="f-logo-text">ABAIJIA</div><div class="f-logo-sub">GROUP</div></div>
+      </div>
+      <p>Производим алюминиевые окна, двери, витражи и фасады. Собственный завод в Бишкеке и Китае. Напрямую от производителя.</p>
+      <a href="https://instagram.com" target="_blank" class="f-social">Instagram →</a>
+    </div>
+    <div class="f-col">
+      <h4>Навигация</h4>
+      <ul>
+        <li><a href="#hero">Главная</a></li>
+        <li><a href="#why">Почему мы</a></li>
+        <li><a href="#products">Продукция</a></li>
+        <li><a href="#about">О компании</a></li>
+        <li><a href="#catalog">Каталог</a></li>
+        <li><a href="#order">Как заказать</a></li>
+        <li><a href="#contact">Оставить заявку</a></li>
+      </ul>
+    </div>
+    <div class="f-col">
+      <h4>Контакты</h4>
+      <ul>
+        <li>Bishkek, Kyrgyzstan</li>
+        <li><a href="tel:+996888520000">+996 888 52 00 00</a></li>
+        <li><a href="mailto:kgabaijiagroup@gmail.com">kgabaijiagroup@gmail.com</a></li>
+        <li><a href="https://wa.me/996888520000" target="_blank">WhatsApp →</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 ABAIJIA GROUP. All rights reserved.</span>
+    <span style="color:rgba(255,255,255,.18)">Bishkek, Kyrgyzstan</span>
+  </div>
+</footer>
+
+<script>
+function sendForm(){
+  var n=document.getElementById('f-name').value.trim();
+  var p=document.getElementById('f-phone').value.trim();
+  if(!n||!p){alert('Пожалуйста, заполните имя и номер телефона.');return;}
+  document.getElementById('formOk').style.display='block';
+  document.getElementById('f-name').value='';
+  document.getElementById('f-phone').value='';
+  document.getElementById('f-type').value='';
+  document.getElementById('f-msg').value='';
+  document.getElementById('formOk').scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+</script>
+</body>
+</html>
