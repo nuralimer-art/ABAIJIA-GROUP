@@ -19,7 +19,16 @@
   --text:#1a1a1a;
   --muted:#6a6a6a;
   --border:#ddd5c5;
-}
+}cat > sitemap.xml << 'EOF'
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://abaijiakg.netlify.app/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>
+EOF
 html{scroll-behavior:smooth}
 body{font-family:'Montserrat',sans-serif;color:var(--text);background:var(--white);overflow-x:hidden}
 
